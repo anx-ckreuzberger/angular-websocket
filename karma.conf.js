@@ -51,10 +51,10 @@ module.exports = function(config) {
     ],
 
     customLaunchers: {
-      'Chrome_travis_ci': {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--disable-web-security', '--no-sandbox']
+    }
     },
 
     // If browser does not capture in given timeout [ms], kill it
@@ -66,7 +66,7 @@ module.exports = function(config) {
   };
 
   if (process.env.TRAVIS){
-    configuration.browsers = ['Firefox', 'Chrome_travis_ci'];
+    configuration.browsers = ['Firefox', 'ChromeHeadlessNoSandbox'];
   }
 
   config.set(configuration);

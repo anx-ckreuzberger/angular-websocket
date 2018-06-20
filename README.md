@@ -103,7 +103,7 @@ var dataStream = $websocket(
 );
 ```
 
-The following options are available (documentation is incomplete, please refer to [src/angular-webosckets.js](src/angular-webosckets.js) for more information:
+The following options are available (documentation is incomplete, please refer to [src/angular-websockets.js](src/angular-websockets.js) for more information:
 
 name        | type                                                   | description
 ------------|--------------------------------------------------------|-------------------------------------
