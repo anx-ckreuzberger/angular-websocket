@@ -1,4 +1,4 @@
-**This is a fork of gdi2290/angular-websockets, aiming to get some pull requests and fixes in** 
+**This is a fork of gdi2290/angular-websockets, aiming to get some pull requests and fixes in**
 
 <p align="center">
   <a href="https://angularclass.com" target="_blank">
@@ -7,16 +7,13 @@
 </p>
 
 
-# Angular Websocket [![Join Slack](https://img.shields.io/badge/slack-join-brightgreen.svg)](https://angularclass.com/slack-join) [![Join the chat at https://gitter.im/AngularClass/angular-websocket](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AngularClass/angular-websocket?utm_campaign=pr-badge&utm_content=badge&utm_medium=badge&utm_source=badge) [![gdi2290/angular-websocket API Documentation](https://www.omniref.com/github/gdi2290/angular-websocket.png)](https://www.omniref.com/github/gdi2290/angular-websocket)
+# Angular Websocket
 
-[![Travis](https://img.shields.io/travis/gdi2290/angular-websocket.svg?style=flat)](https://travis-ci.org/gdi2290/angular-websocket)
-[![Bower](https://img.shields.io/bower/v/angular-websocket.svg?style=flat)](https://github.com/gdi2290/angular-websocket)
+[![Travis](https://img.shields.io/travis/anx-ckreuzberger/angular-websocket.svg?style=flat)](https://travis-ci.org/anx-ckreuzberger/angular-websocket)
 [![npm](https://img.shields.io/npm/v/angular-websocket.svg?style=flat)](https://www.npmjs.com/package/angular-websocket)
-[![Dependency Status](https://david-dm.org/gdi2290/angular-websocket.svg)](https://david-dm.org/gdi2290/angular-websocket)
-[![devDependency Status](https://david-dm.org/gdi2290/angular-websocket/dev-status.svg)](https://david-dm.org/gdi2290/angular-websocket#info=devDependencies)
+[![Dependency Status](https://david-dm.org/anx-ckreuzberger/angular-websocket.svg)](https://david-dm.org/anx-ckreuzberger/angular-websocket)
+[![devDependency Status](https://david-dm.org/anx-ckreuzberger/angular-websocket/dev-status.svg)](https://david-dm.org/anx-ckreuzberger/angular-websocket#info=devDependencies)
 [![NPM](https://nodei.co/npm/angular-websocket.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/angular-websocket/)
-
-### Status: Looking for feedback about new API changes
 
 An AngularJS 1.x WebSocket service for connecting client applications to servers.
 
@@ -24,17 +21,34 @@ An AngularJS 1.x WebSocket service for connecting client applications to servers
 
 You can download angular-websocket by:
 
-* (prefered) Using bower and running `bower install angular-websocket --save`
-* Using npm and running `npm install angular-websocket --save`
-* Downloading it manually by clicking [here to download development unminified version](https://raw.github.com/AngularClass/angular-websocket/master/dist/angular-websocket.js)
-* CDN for development `https://cdn.rawgit.com/AngularClass/angular-websocket/v2.0.0/dist/angular-websocket.js`
-* CDN for production `https://cdn.rawgit.com/AngularClass/angular-websocket/v2.0.0/dist/angular-websocket.min.js`
+* Currently the only supported method for adding this to your repository is by using npm + git:
+```bash
+npm install git+https://github.com/anx-ckreuzberger/angular-websocket.git --save
+```
+* You can also download it manually by clicking [here to download development unminified version](https://raw.github.com/anx-ckreuzberger/angular-websocket/master/dist/angular-websocket.js)
+
+We will try to provide an npm package soon.
 
 ## Usage
 
+* Include the **dist/angular-websockets.js** file in your application
+```html
+<script src="node_modules/angular-websocket/dist/angular-websocket.js"></script>
+```
+* Add ``'ngWebSocket'`` to angular.modules:
+```javascript
+angular.module('YOUR_APP', [
+  // ... your dependencies
+  'ngWebSocket'
+]);
+```
+* Inject the ``$websocket`` service and play with it!
+
+## Example
+
 ```html
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-  <script src="bower_components/angular-websocket/angular-websocket.js"></script>
+  <script src="node_modules/angular-websocket/dist/angular-websocket.js"></script>
   <section ng-controller="SomeController">
     <ul ng-repeat="data in MyData.collection track by $index" >
       <li> {{ data }} </li>
@@ -75,6 +89,31 @@ You can download angular-websocket by:
 ### Factory: `$websocket` (in module `ngWebSocket`)
 
 returns instance of $Websocket
+
+### Options
+
+When creating a new websocket, you can add options like this:
+
+```javascript
+var dataStream = $websocket(
+    'ws://website.com/data',
+    {
+        'reconnectIfNotNormalClose': true
+    }
+);
+```
+
+The following options are available (documentation is incomplete, please refer to [src/angular-webosckets.js](src/angular-webosckets.js) for more information:
+
+name        | type                                                   | description
+------------|--------------------------------------------------------|-------------------------------------
+``reconnectIfNotNormalClose`` | Boolean                              | Whether or not the library should attempt to reconnect when the connection was closed abnormally (e.g., due to a server restart)
+``scope``   | angular.scope                                          | ToDo
+``rootScopeFailover`` | ToDo                                         | ToDo
+``useApplyAsync``| Boolean                                           | ToDo
+``initialTimeout`` | Number                                          | ToDo (timeout in ms, default 500 ms)
+``maxTimeout``     | Number                                          | ToDo (timeout in ms, default 5 minutes)
+``binaryType``     | String                                          | ToDo
 
 ### Methods
 
