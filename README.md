@@ -1,3 +1,5 @@
+**This is a fork of gdi2290/angular-websockets, aiming to get some pull requests and fixes in** 
+
 <p align="center">
   <a href="https://angularclass.com" target="_blank">
     <img src="https://cloud.githubusercontent.com/assets/1016365/10355203/f50e880c-6d1d-11e5-8f59-d0d8c0870739.png" alt="Angular Websocket" width="500" height="320"/>
